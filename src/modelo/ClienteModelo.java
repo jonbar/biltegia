@@ -57,7 +57,7 @@ public class ClienteModelo extends Conector{
 			st.execute("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " 
 					 + "VALUES ('" 	+ cliente.getId() + "','"
 					 				+ cliente.getNombre() + "','"
-					 				+ cliente.getNombre() + "','"
+					 				+ cliente.getDireccion() + "','"
 					 				+ cliente.getCodPostal() + "','" 
 					 				+ cliente.getTelefono() + "')");
 		} catch (SQLException e) {

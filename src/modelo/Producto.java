@@ -9,27 +9,22 @@ package modelo;
  */
 public class Producto {
 	//TODO crear atributos getters setters y constructor
-int existencias;
 int id;
 String nombre;
-double precio;
 String proveedor;
-public Producto(){
-	
-}
+double precio;
+int existencias;
 
-public Producto(int existencias, int id, String nombre, double precio, String proveedor) {
+public Producto() {
 	super();
-	this.existencias = existencias;
+	// TODO Auto-generated constructor stub
+}
+public Producto(int id, String nombre, String proveedor, double precio, int existencias) {
+	super();
 	this.id = id;
 	this.nombre = nombre;
-	this.precio = precio;
 	this.proveedor = proveedor;
-}
-public int getExistencias() {
-	return existencias;
-}
-public void setExistencias(int existencias) {
+	this.precio = precio;
 	this.existencias = existencias;
 }
 public int getId() {
@@ -44,19 +39,23 @@ public String getNombre() {
 public void setNombre(String nombre) {
 	this.nombre = nombre;
 }
-public double getPrecio() {
-	return precio;
-}
-public void setPrecio(double precio) {
-	this.precio = precio;
-}
 public String getProveedor() {
 	return proveedor;
 }
 public void setProveedor(String proveedor) {
 	this.proveedor = proveedor;
 }
-
-
+public double getPrecio() {
+	return precio;
+}
+public void setPrecio(double precio) {
+	this.precio = precio;
+}
+public int getExistencias() {
+	return existencias;
+}
+public void setExistencias(int existencias) {
+	this.existencias = existencias;
+}
 
 }

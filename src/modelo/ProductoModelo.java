@@ -15,12 +15,22 @@ import java.util.ArrayList;
 public class ProductoModelo extends Conector{
 	
 	public ArrayList<Producto> selectAll() {
-		//TODO produkutu guztiak itzuliko ditu
-		return null;
+		ArrayList<Producto> productos = new ArrayList<Producto>(); 
+		try {
+			Statement st = this.conexion.createStatement();
+			ResultSet rs = st.executeQuery("select * from socios");
+			while(rs.next()){
+				productos.add(new Producto());
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return productos;
 	}
 	
 	Producto select(int id){
-		//TODO id hori duen produktua itzultzen du
 		try {
 			Statement st = this.conexion.createStatement();
 			ResultSet rs = st.executeQuery("select * from socios where id='" + id + "'");
@@ -33,21 +43,34 @@ public class ProductoModelo extends Conector{
 			producto.setExistencias(rs.getInt("existencias"));
 			return producto;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 			return null;
 	}
 	
 	public void update(Producto producto) {
-		//TODO produktuaren id-a erabilita update egiten du
+		
 	}
 	
 	public void insert(Producto producto) {
-		//TODO produktuaren insert egiten du
-	}
+			Statement st;
+			try {
+				st = super.getConexion().createStatement();
+				System.out.println("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " 
+						 + "VALUES ('" + producto.getId() + "','"
+						 + producto.getNombre() + "','"
+			 			 + producto.getProveedor() + "','" 
+			 			 + producto.getPrecio() + "','" 
+			 			 + producto.getExistencias() + "')");
+				st.execute("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " 
+						 + "VALUES ('" 	+ producto.getId() + "','"
+						 				+ producto.getNombre() + "','"
+						 				+ producto.getProveedor() + "','"
+						 				+ producto.getPrecio() + "','" 
+						 				+ producto.getExistencias() + "')");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	
-
-	
-
 }
