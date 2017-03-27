@@ -17,7 +17,7 @@ public class ProductoModelo extends Conector {
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		try {
 			Statement st = this.conexion.createStatement();
-			ResultSet rs = st.executeQuery("select * from socios");
+			ResultSet rs = st.executeQuery("select * from productos");
 			while (rs.next()) {
 				productos.add(new Producto(rs.getInt("id"), rs.getString("nombre"), rs.getString("proveedor"),
 						rs.getDouble("precio"), rs.getInt("existencias")));
@@ -33,7 +33,7 @@ public class ProductoModelo extends Conector {
 	Producto select(int id) {
 		try {
 			Statement st = this.conexion.createStatement();
-			ResultSet rs = st.executeQuery("select * from socios where id='" + id + "'");
+			ResultSet rs = st.executeQuery("select * from productos where id='" + id + "'");
 			rs.next();
 			Producto producto = new Producto();
 			producto.setId(id);
@@ -51,7 +51,7 @@ public class ProductoModelo extends Conector {
 	public void update(Producto producto) {
 		try {
 			Statement st = super.getConexion().createStatement();
-			st.executeUpdate("UPDATE socios "
+			st.executeUpdate("UPDATE productos "
 						 + "SET nombre='"  	 + producto.getNombre()  	+ "'"
 						 + ",proveedor='"  + producto.getProveedor() 	+ "'"
 						 + ",precio='" + producto.getPrecio() + "'"
@@ -64,18 +64,7 @@ public class ProductoModelo extends Conector {
 	}
 
 	public void insert(Producto producto) {
-		Statement st;
-		try {
-			st = super.getConexion().createStatement();
-			System.out.println("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " + "VALUES ('"
-					+ producto.getId() + "','" + producto.getNombre() + "','" + producto.getProveedor() + "','"
-					+ producto.getPrecio() + "','" + producto.getExistencias() + "')");
-			st.execute("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " + "VALUES ('" + producto.getId()
-					+ "','" + producto.getNombre() + "','" + producto.getProveedor() + "','" + producto.getPrecio()
-					+ "','" + producto.getExistencias() + "')");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 }
