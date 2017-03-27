@@ -3,6 +3,8 @@
  */
 package modelo;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +28,25 @@ public class ClienteModelo extends Conector{
 	}
 	
 	public void insert(Cliente cliente){
-		//TODO clienteren insert egiten du
+		Statement st;
+		try {
+			st = super.getConexion().createStatement();
+			System.out.println("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " 
+					 + "VALUES ('" + cliente.getId() + "','"
+					 + cliente.getNombre() + "','"
+		 			 + cliente.getDireccion() + "','" 
+		 			 + cliente.getCodPostal() + "','" 
+		 			 + cliente.getTelefono() + "')");
+			st.execute("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " 
+					 + "VALUES ('" 	+ cliente.getId() + "','"
+					 				+ cliente.getNombre() + "','"
+					 				+ cliente.getNombre() + "','"
+					 				+ cliente.getCodPostal() + "','" 
+					 				+ cliente.getTelefono() + "')");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
