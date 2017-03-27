@@ -64,7 +64,16 @@ public class ProductoModelo extends Conector {
 	}
 
 	public void insert(Producto producto) {
-		
+		Statement st;
+		try {
+			st = this.conexion.createStatement();
+			st.execute("INSERT INTO productos (id, nombre, proveedor, precio, existencias) VALUES '" + producto.getId()
+					+ "', '" + producto.getNombre() + "','" + producto.getProveedor() + "', '" + producto.getPrecio()
+					+ "', '" + producto.getExistencias() + "')");
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 }
