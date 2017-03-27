@@ -16,7 +16,7 @@ public class Conector {
 	protected Connection conexion;
 
 	
-	Conector(String biltegia) {
+	Conector() {
 		
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
