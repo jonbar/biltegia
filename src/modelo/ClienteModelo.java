@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * 24 mar. 2017
  */
 public class ClienteModelo extends Conector{
-	
+
 	public ArrayList<Cliente> selectAll(){
 		//TODO bezero guztiak itzuliko ditu
 		return null;
