@@ -48,12 +48,6 @@ public class ClienteModelo extends Conector{
 		Statement st;
 		try {
 			st = super.getConexion().createStatement();
-			System.out.println("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " 
-					 + "VALUES ('" + cliente.getId() + "','"
-					 + cliente.getNombre() + "','"
-		 			 + cliente.getDireccion() + "','" 
-		 			 + cliente.getCodPostal() + "','" 
-		 			 + cliente.getTelefono() + "')");
 			st.execute("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " 
 					 + "VALUES ('" 	+ cliente.getId() + "','"
 					 				+ cliente.getNombre() + "','"
