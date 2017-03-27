@@ -9,28 +9,28 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * @author enautirakasle
- * 24 mar. 2017
+ * @author enautirakasle 24 mar. 2017
  */
-public class ProductoModelo extends Conector{
-	
+public class ProductoModelo extends Conector {
+
 	public ArrayList<Producto> selectAll() {
-		ArrayList<Producto> productos = new ArrayList<Producto>(); 
+		ArrayList<Producto> productos = new ArrayList<Producto>();
 		try {
 			Statement st = this.conexion.createStatement();
 			ResultSet rs = st.executeQuery("select * from socios");
-			while(rs.next()){
-				productos.add(new Producto());
+			while (rs.next()) {
+				productos.add(new Producto(rs.getInt("id"), rs.getString("nombre"), rs.getString("proveedor"),
+						rs.getDouble("precio"), rs.getInt("existencias")));
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return productos;
 	}
-	
-	Producto select(int id){
+
+	Producto select(int id) {
 		try {
 			Statement st = this.conexion.createStatement();
 			ResultSet rs = st.executeQuery("select * from socios where id='" + id + "'");
@@ -45,32 +45,37 @@ public class ProductoModelo extends Conector{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			return null;
+		return null;
 	}
-	
+
 	public void update(Producto producto) {
-		
-	}
-	
-	public void insert(Producto producto) {
-			Statement st;
-			try {
-				st = super.getConexion().createStatement();
-				System.out.println("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " 
-						 + "VALUES ('" + producto.getId() + "','"
-						 + producto.getNombre() + "','"
-			 			 + producto.getProveedor() + "','" 
-			 			 + producto.getPrecio() + "','" 
-			 			 + producto.getExistencias() + "')");
-				st.execute("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " 
-						 + "VALUES ('" 	+ producto.getId() + "','"
-						 				+ producto.getNombre() + "','"
-						 				+ producto.getProveedor() + "','"
-						 				+ producto.getPrecio() + "','" 
-						 				+ producto.getExistencias() + "')");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		try {
+			Statement st = super.getConexion().createStatement();
+			st.executeUpdate("UPDATE socios "
+						 + "SET nombre='"  	 + producto.getNombre()  	+ "'"
+						 + ",proveedor='"  + producto.getProveedor() 	+ "'"
+						 + ",precio='" + producto.getPrecio() + "'"
+						 + ",existencias='" + producto.getExistencias() + "'"
+						 + " WHERE id=" + producto.getId());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
+	}
+
+	public void insert(Producto producto) {
+		Statement st;
+		try {
+			st = super.getConexion().createStatement();
+			System.out.println("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " + "VALUES ('"
+					+ producto.getId() + "','" + producto.getNombre() + "','" + producto.getProveedor() + "','"
+					+ producto.getPrecio() + "','" + producto.getExistencias() + "')");
+			st.execute("INSERT INTO socios (id,nombre,direccion,codPostal,telefono) " + "VALUES ('" + producto.getId()
+					+ "','" + producto.getNombre() + "','" + producto.getProveedor() + "','" + producto.getPrecio()
+					+ "','" + producto.getExistencias() + "')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
