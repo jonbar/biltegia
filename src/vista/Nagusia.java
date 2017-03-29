@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.ClienteControlador;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -13,7 +16,18 @@ import java.awt.Font;
 public class Nagusia extends JFrame {
 
 	private JPanel contentPane;
+	private ClienteControlador clienteControlador;
 
+
+	public ClienteControlador getClienteControlador() {
+		return clienteControlador;
+	}
+
+
+	public void setClienteControlador(ClienteControlador clienteControlador) {
+		this.clienteControlador = clienteControlador;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
